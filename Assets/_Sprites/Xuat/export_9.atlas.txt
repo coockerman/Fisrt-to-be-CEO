@@ -1,0 +1,34 @@
+
+export_9.png
+size: 2324,620
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+body
+  rotate: false
+  xy: 0, 0
+  size: 1878, 620
+  orig: 1878, 620
+  offset: 0, 0
+  index: -1
+thuocLa
+  rotate: false
+  xy: 1880, 12
+  size: 147, 144
+  orig: 147, 144
+  offset: 0, 0
+  index: -1
+vaySau
+  rotate: true
+  xy: 2132, 391
+  size: 229, 189
+  orig: 229, 189
+  offset: 0, 0
+  index: -1
+vayTruoc
+  rotate: true
+  xy: 1880, 158
+  size: 462, 250
+  orig: 463, 251
+  offset: 0, 0
+  index: -1

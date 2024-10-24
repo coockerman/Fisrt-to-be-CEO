@@ -1,0 +1,13 @@
+
+export_3.png
+size: 264,228
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 2
+  rotate: false
+  xy: 0, 0
+  size: 264, 228
+  orig: 264, 228
+  offset: 0, 0
+  index: -1

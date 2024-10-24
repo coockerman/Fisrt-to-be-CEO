@@ -1,0 +1,20 @@
+
+export_1.png
+size: 244,96
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+caVat
+  rotate: false
+  xy: 213, 33
+  size: 30, 63
+  orig: 30, 63
+  offset: 0, 0
+  index: -1
+fish
+  rotate: false
+  xy: 0, 0
+  size: 211, 96
+  orig: 212, 97
+  offset: 1, 1
+  index: -1

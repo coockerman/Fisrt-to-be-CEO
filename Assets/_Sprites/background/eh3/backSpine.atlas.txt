@@ -1,0 +1,83 @@
+
+backSpine.png
+size: 3892,3736
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Coral1
+  rotate: false
+  xy: 0, 142
+  size: 1265, 640
+  orig: 1265, 640
+  offset: 0, 0
+  index: -1
+coral2
+  rotate: true
+  xy: 2052, 384
+  size: 398, 431
+  orig: 398, 431
+  offset: 0, 0
+  index: -1
+coral2 copy
+  rotate: false
+  xy: 2485, 0
+  size: 398, 386
+  orig: 398, 386
+  offset: 0, 0
+  index: -1
+rock
+  rotate: false
+  xy: 0, 784
+  size: 3888, 2317
+  orig: 3890, 2319
+  offset: 1, 1
+  index: -1
+rockFront
+  rotate: false
+  xy: 0, 3103
+  size: 3890, 631
+  orig: 3890, 631
+  offset: 0, 0
+  index: -1
+rong1
+  rotate: true
+  xy: 1267, 358
+  size: 424, 783
+  orig: 424, 783
+  offset: 0, 0
+  index: -1
+rong1_1
+  rotate: true
+  xy: 2485, 388
+  size: 394, 727
+  orig: 394, 727
+  offset: 0, 0
+  index: -1
+rong2
+  rotate: false
+  xy: 3214, 0
+  size: 341, 782
+  orig: 341, 782
+  offset: 0, 0
+  index: -1
+rong2_1
+  rotate: false
+  xy: 3557, 56
+  size: 317, 726
+  orig: 317, 726
+  offset: 0, 0
+  index: -1
+rong3
+  rotate: true
+  xy: 1267, 180
+  size: 176, 829
+  orig: 176, 830
+  offset: 0, 1
+  index: -1
+rong3_1
+  rotate: true
+  xy: 1267, 15
+  size: 163, 770
+  orig: 163, 770
+  offset: 0, 0
+  index: -1

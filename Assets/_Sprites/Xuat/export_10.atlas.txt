@@ -1,0 +1,34 @@
+
+export_10.png
+size: 3292,1032
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 1
+  rotate: false
+  xy: 0, 0
+  size: 2779, 1029
+  orig: 2779, 1029
+  offset: 0, 0
+  index: -1
+day
+  rotate: false
+  xy: 3198, 649
+  size: 91, 380
+  orig: 92, 381
+  offset: 0, 0
+  index: -1
+thuocLa
+  rotate: true
+  xy: 2781, 301
+  size: 728, 415
+  orig: 730, 415
+  offset: 1, 0
+  index: -1
+vay
+  rotate: false
+  xy: 2781, 3
+  size: 502, 296
+  orig: 502, 296
+  offset: 0, 0
+  index: -1

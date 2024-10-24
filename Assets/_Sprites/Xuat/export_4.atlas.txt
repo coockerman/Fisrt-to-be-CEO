@@ -1,0 +1,27 @@
+
+export_4.png
+size: 424,236
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Layer 3
+  rotate: false
+  xy: 0, 0
+  size: 364, 233
+  orig: 407, 233
+  offset: 43, 0
+  index: -1
+thuoc
+  rotate: true
+  xy: 366, 104
+  size: 68, 29
+  orig: 71, 31
+  offset: 1, 1
+  index: -1
+vay
+  rotate: true
+  xy: 366, 174
+  size: 59, 56
+  orig: 59, 56
+  offset: 0, 0
+  index: -1
