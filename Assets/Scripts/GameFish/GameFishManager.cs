@@ -4,37 +4,52 @@ using UnityEngine;
 
 public class GameFishManager : MonoBehaviour
 {
-    [SerializeField] List<DataFish> DataListFish;
-    [SerializeField] List<DataObstacle> DataListObstacle;
+    [SerializeField] List<DataFish> dataListFish;
+    [SerializeField] List<DataObstacle> dataListObstacle;
 
-    [SerializeField] GameObject NormalFishPrefab;
-    [SerializeField] GameObject ExpFishPrefab;
+    [SerializeField] GameObject normalFishPrefab;
+    [SerializeField] GameObject expFishPrefab;
 
-    [SerializeField] GameObject ShoesObstaclePrefab;
-    [SerializeField] GameObject WasteObstaclePrefab;
+    [SerializeField] GameObject shoesObstaclePrefab;
+    [SerializeField] GameObject wasteObstaclePrefab;
 
     private void Start()
     {
-        FishFactory.Instance.RegisterFish(EFish.NormalFish, NormalFishPrefab);
-        FishFactory.Instance.RegisterFish(EFish.ExpFish, ExpFishPrefab);
+        FishFactory.Instance.RegisterFish(EFish.NormalFish, normalFishPrefab);
+        FishFactory.Instance.RegisterFish(EFish.ExpFish, expFishPrefab);
 
-        ObstacleFactory.Instance.RegisterObstacle(EObstacle.Waste, WasteObstaclePrefab);
-        ObstacleFactory.Instance.RegisterObstacle(EObstacle.Shoes, ShoesObstaclePrefab);
+        ObstacleFactory.Instance.RegisterObstacle(EObstacle.Waste, wasteObstaclePrefab);
+        ObstacleFactory.Instance.RegisterObstacle(EObstacle.Shoes, shoesObstaclePrefab);
 
-        StartCoroutine(SpawnFish(DataListFish));
+        StartCoroutine(ToSpawnEntity(dataListFish, 3f));
+        StartCoroutine(ToSpawnEntity(dataListObstacle, 2f));
     }
-    IEnumerator SpawnFish(List<DataFish> dataEntity)
+    // ReSharper disable Unity.PerformanceAnalysis
+    IEnumerator ToSpawnEntity(List<DataFish> dataEntity, float timeDelay)
     {
         while(true)
         {
-            RanSpawnFish(dataEntity);
-            yield return new WaitForSeconds(3f);
+            RanSpawnEntity(dataEntity);
+            yield return new WaitForSeconds(timeDelay);
         }
     }
-    void RanSpawnFish(List<DataFish> dataEntity)
+    IEnumerator ToSpawnEntity(List<DataObstacle> dataEntity, float timeDelay)
     {
-        int ranListFish = Random.Range(0, DataListFish.Count);
+        while(true)
+        {
+            RanSpawnEntity(dataEntity);
+            yield return new WaitForSeconds(timeDelay);
+        }
+    }
+    void RanSpawnEntity(List<DataFish> dataEntity)
+    {
+        int ranListFish = Random.Range(0, dataEntity.Count);
         SpawnEntity.Instance.SpawnElementEntity(dataEntity[ranListFish]);
-
+    }
+    // ReSharper disable Unity.PerformanceAnalysis
+    void RanSpawnEntity(List<DataObstacle> dataEntity)
+    {
+        int ranListFish = Random.Range(0, dataEntity.Count);
+        SpawnEntity.Instance.SpawnElementEntity(dataEntity[ranListFish]);
     }
 }

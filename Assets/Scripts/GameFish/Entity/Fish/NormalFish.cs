@@ -2,9 +2,9 @@
 
 public class NormalFish : AFish
 {
-    private void Update()
+    protected override void Setup()
     {
-        Movement();
+        gameObject.tag = EFish.NormalFish.ToString();
     }
     public override void Movement()
     {
@@ -14,4 +14,6 @@ public class NormalFish : AFish
         Vector3 moveDirection = new Vector3(MoveSpeed * Time.deltaTime * head, 0, 0);
         transform.position += moveDirection;
     }
+
+    
 }

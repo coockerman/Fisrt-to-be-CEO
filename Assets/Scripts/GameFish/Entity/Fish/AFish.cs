@@ -27,8 +27,14 @@ public abstract class AFish : MonoBehaviour, IFish
         skeletonData = dataFish.SkeletonData;
         gameObject.GetComponent<SkeletonAnimation>().skeletonDataAsset = dataFish.SkeletonData;
         gameObject.GetComponent<SkeletonAnimation>().Initialize(true);
-        gameObject.AddComponent<MeshCollider>();
+        Setup();
     }
 
+    protected virtual void Update()
+    {
+        Movement();
+    }
+    protected abstract void Setup();
     public abstract void Movement();
+    
 }

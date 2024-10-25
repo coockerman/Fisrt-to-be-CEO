@@ -7,24 +7,21 @@ using UnityEngine;
 
 public class FishFactory : ASingleton<FishFactory>
 {
-    private Dictionary<EFish, GameObject> FishPrefabDictionary;
+    private Dictionary<EFish, GameObject> _fishPrefabDictionary;
     protected override void Awake()
     {
         base.Awake();
 
-        FishPrefabDictionary = new Dictionary<EFish, GameObject>();
+        _fishPrefabDictionary = new Dictionary<EFish, GameObject>();
     }
     public void RegisterFish(EFish typeFish, GameObject prefab)
     {
-        if (!FishPrefabDictionary.ContainsKey(typeFish))
-        {
-            FishPrefabDictionary[typeFish] = prefab;
-        }
+        _fishPrefabDictionary.TryAdd(typeFish, prefab);
     }
 
     public IFish CreateFish(DataFish dataFish)
     {
-        if (FishPrefabDictionary.TryGetValue(dataFish.TypeFish, out GameObject prefab))
+        if (_fishPrefabDictionary.TryGetValue(dataFish.TypeFish, out GameObject prefab))
         {
             GameObject fishObject = Instantiate(prefab, gameObject.transform);
             IFish fishComponent = fishObject.GetComponent<IFish>();

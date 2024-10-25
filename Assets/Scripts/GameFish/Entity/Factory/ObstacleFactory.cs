@@ -1,29 +1,23 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class ObstacleFactory : ASingleton<ObstacleFactory>
 {
-    private Dictionary<EObstacle, GameObject> ObstaclePrefabDictionary;
+    private Dictionary<EObstacle, GameObject> _obstaclePrefabDictionary;
     protected override void Awake()
     {
         base.Awake();
 
-        ObstaclePrefabDictionary = new Dictionary<EObstacle, GameObject>();
+        _obstaclePrefabDictionary = new Dictionary<EObstacle, GameObject>();
     }
     public void RegisterObstacle(EObstacle typeObstacle, GameObject prefab)
     {
-        if (!ObstaclePrefabDictionary.ContainsKey(typeObstacle))
-        {
-            ObstaclePrefabDictionary[typeObstacle] = prefab;
-        }
+        _obstaclePrefabDictionary.TryAdd(typeObstacle, prefab);
     }
 
     public IObstacle CreateObstacle(DataObstacle dataObstacle)
     {
-        if (ObstaclePrefabDictionary.TryGetValue(dataObstacle.TypeObstacle, out GameObject prefab))
+        if (_obstaclePrefabDictionary.TryGetValue(dataObstacle.TypeObstacle, out GameObject prefab))
         {
             GameObject obstacleObject = Instantiate(prefab, gameObject.transform);
             IObstacle obstacleComponent = obstacleObject.GetComponent<IObstacle>();

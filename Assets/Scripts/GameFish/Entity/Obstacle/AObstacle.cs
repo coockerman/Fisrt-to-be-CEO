@@ -20,7 +20,13 @@ public abstract class AObstacle : MonoBehaviour, IObstacle
         nameObstacle = dataEntity.Name;
         timeEffect = dataEntity.TimeEffect;
         moveSpeed = dataEntity.MoveSpeed;
+        Setup();
     }
 
+    protected virtual void Update()
+    {
+        Movement();
+    }
+    protected abstract void Setup();
     public abstract void Movement();
 }
