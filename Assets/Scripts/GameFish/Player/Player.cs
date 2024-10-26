@@ -1,10 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
-    public float defaultSpeed = 5f;
+    public float DefaultSpeed = 5f;
+    public float DefaultHp = 5f;
+    public DataLVPlayer DataLevelPlayer;
+    
     private float speed = 5f;
+    private float hp = 5f;
+    private float exp = 0f;
+    private LevelData levelData;
 
     private IPlayerState _currentState;
     private Dictionary<IPlayerState, float> activeEffects = new Dictionary<IPlayerState, float>();
@@ -16,6 +23,17 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         SetState(new MovingState());
+        
+        hp = DefaultHp;
+        exp = 0f;
+        if (DataLevelPlayer != null)
+        {
+            levelData = new LevelData(DataLevelPlayer.levels[1].level, DataLevelPlayer.levels[1].expRequired );
+        }
+        else
+        {
+            Debug.LogWarning("No level data found");
+        }
     }
 
     private void Update()
@@ -40,7 +58,6 @@ public class Player : MonoBehaviour
     {
         this.speed = speed;
     }
-
     public void Move()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
@@ -56,7 +73,47 @@ public class Player : MonoBehaviour
             transform.localScale = new Vector3(-1, 1, 1);
         }
     }
+    void AddHp(float hpGet)
+    {
+        hp += hpGet;
+        if (hp >= DefaultHp) hp = DefaultHp;
+    }
 
+    void ReduceHp(float hpReduce)
+    {
+        hp -= hpReduce;
+        if (hp <= 0)
+        {
+            hp = 0;
+            GameOver();
+        }
+        EventPlayer.UIUpdateHp(hp, DefaultHp);
+    }
+
+    void AddExp(float expGet)
+    {
+        exp += expGet;
+        if (exp >= levelData.expRequired)
+        {
+            LvUp();
+        }
+        EventPlayer.UIUpdateExp(levelData.level, exp, levelData.expRequired );
+    }
+    void LvUp()
+    {
+        exp -= levelData.expRequired;
+        levelData = DataLevelPlayer.levels[levelData.level + 1];
+    }
+    
+    void EatFish(IFish fish)
+    {
+        // Todo EatFish
+    }
+
+    void GameOver()
+    {
+        EventPlayer.UIGameOver();      
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag(EEntity.Obstacle.ToString()))
@@ -76,11 +133,8 @@ public class Player : MonoBehaviour
             }
         }
     }
-    void EatFish(IFish fish)
-    {
-        Debug.Log("Lv Fish: " + fish.LvFish);
-        Debug.Log("Exp Fish: " + fish.ExpCanGet);
-    }
+
+    
     public void AddEffect(IPlayerState newEffect, float duration)
     {
         if (_currentState == null || newEffect.Priority >= _currentState.Priority)
@@ -88,7 +142,6 @@ public class Player : MonoBehaviour
             SetState(newEffect);
         }
 
-        // Cập nhật thời gian nếu hiệu ứng đã tồn tại hoặc thêm hiệu ứng mới vào Dictionary
         if (activeEffects.ContainsKey(newEffect))
         {
             activeEffects[newEffect] = Mathf.Max(activeEffects[newEffect], duration);
@@ -98,29 +151,26 @@ public class Player : MonoBehaviour
             activeEffects.Add(newEffect, duration);
         }
     }
+
     private void UpdateActiveEffects()
     {
         List<IPlayerState> effectsToRemove = new List<IPlayerState>();
 
-        // Duyệt qua các hiệu ứng và giảm thời gian
         foreach (IPlayerState effect in new List<IPlayerState>(activeEffects.Keys))
         {
             activeEffects[effect] -= Time.deltaTime;
 
-            // Khi thời gian hiệu ứng hết, đưa vào danh sách để xóa
             if (activeEffects[effect] <= 0)
             {
                 effectsToRemove.Add(effect);
             }
         }
 
-        // Loại bỏ các hiệu ứng đã hết thời gian ngoài vòng lặp
         foreach (var effect in effectsToRemove)
         {
             activeEffects.Remove(effect);
         }
 
-        // Tìm hiệu ứng có độ ưu tiên cao nhất còn lại
         IPlayerState highestPriorityEffect = null;
         foreach (IPlayerState activeEffect in activeEffects.Keys)
         {
@@ -132,5 +182,4 @@ public class Player : MonoBehaviour
 
         SetState(highestPriorityEffect ?? new MovingState());
     }
-
 }

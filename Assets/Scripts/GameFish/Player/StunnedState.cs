@@ -13,6 +13,6 @@ public class StunnedState : IPlayerState
 
     public void ExitState(Player player)
     {
-        player.SetSpeed(player.defaultSpeed);
+        player.SetSpeed(player.DefaultSpeed);
     }
 }

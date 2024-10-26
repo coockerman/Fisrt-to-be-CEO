@@ -3,7 +3,7 @@ public class SlowState : IPlayerState
     public EObstacle Priority => EObstacle.Waste;
     public void EnterState(Player player)
     {
-        player.SetSpeed(player.defaultSpeed / 2);
+        player.SetSpeed(player.DefaultSpeed / 2);
     }
 
     public void UpdateState(Player player)
@@ -13,6 +13,6 @@ public class SlowState : IPlayerState
 
     public void ExitState(Player player)
     {
-        player.SetSpeed(player.defaultSpeed);
+        player.SetSpeed(player.DefaultSpeed);
     }
 }

@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public class EventManager : MonoBehaviour
+public class EventManager
 {
-    // Start is called before the first frame update
-    void Start()
+    public static event Action OnUITime;
+    public static event Action OnUISetting;
+    
+    public static void UITime()
     {
-        
+        OnUITime?.Invoke();
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void UISetting()
     {
-        
+        OnUISetting?.Invoke();
     }
 }

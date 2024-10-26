@@ -4,7 +4,7 @@ public class MovingState : IPlayerState
 
     public void EnterState(Player player)
     {
-        player.SetSpeed(player.defaultSpeed);
+        player.SetSpeed(player.DefaultSpeed);
     }
 
     public void UpdateState(Player player)
