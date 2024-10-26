@@ -1,10 +1,15 @@
+public enum EEntity
+{
+    Obstacle, Fish
+}
 public enum EObstacle
 {
-    Shoes, Waste
+    None, Waste, Shoes
 }
 public enum EFish
 {
     BossFish, NormalFish, ExpFish, MayflyFish
 }
+
 
 

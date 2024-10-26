@@ -27,6 +27,7 @@ public abstract class AFish : MonoBehaviour, IFish
         skeletonData = dataFish.SkeletonData;
         gameObject.GetComponent<SkeletonAnimation>().skeletonDataAsset = dataFish.SkeletonData;
         gameObject.GetComponent<SkeletonAnimation>().Initialize(true);
+        gameObject.tag = EEntity.Fish.ToString();
         Setup();
     }
 

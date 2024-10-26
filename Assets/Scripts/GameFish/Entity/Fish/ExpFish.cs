@@ -5,7 +5,7 @@ public class ExpFish : AFish
     
     protected override void Setup()
     {
-        gameObject.tag = EFish.ExpFish.ToString();
+        
     }
     public override void Movement()
     {

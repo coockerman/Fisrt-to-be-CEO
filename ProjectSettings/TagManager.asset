@@ -4,12 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - NormalFish
-  - ExpFish
-  - BossFish
-  - MayflyFish
-  - Waste
-  - Shoes
+  - Fish
+  - Obstacle
   layers:
   - Default
   - TransparentFX

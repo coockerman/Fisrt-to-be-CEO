@@ -1,5 +1,6 @@
 public class SlowState : IPlayerState
 {
+    public EObstacle Priority => EObstacle.Waste;
     public void EnterState(Player player)
     {
         player.SetSpeed(player.defaultSpeed / 2);

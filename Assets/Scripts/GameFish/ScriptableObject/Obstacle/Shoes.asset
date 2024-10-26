@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: shoes
   MoveSpeed: 2
-  TypeObstacle: 0
+  TypeObstacle: 2
   TimeEffect: 3

@@ -4,7 +4,7 @@ public class NormalFish : AFish
 {
     protected override void Setup()
     {
-        gameObject.tag = EFish.NormalFish.ToString();
+        
     }
     public override void Movement()
     {

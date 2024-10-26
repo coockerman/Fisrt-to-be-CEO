@@ -11,6 +11,7 @@ public interface IObstacle : IEntity
     public EObstacle TypeObstacle { get; }
     public float TimeEffect { get; }
     public void Init(DataObstacle dataEntity);
+    public IPlayerState GetEffectState();
 
 }
 

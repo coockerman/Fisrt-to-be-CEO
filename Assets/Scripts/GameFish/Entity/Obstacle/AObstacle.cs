@@ -20,6 +20,7 @@ public abstract class AObstacle : MonoBehaviour, IObstacle
         nameObstacle = dataEntity.Name;
         timeEffect = dataEntity.TimeEffect;
         moveSpeed = dataEntity.MoveSpeed;
+        gameObject.tag = EEntity.Obstacle.ToString();
         Setup();
     }
 
@@ -29,4 +30,6 @@ public abstract class AObstacle : MonoBehaviour, IObstacle
     }
     protected abstract void Setup();
     public abstract void Movement();
+    
+    public abstract IPlayerState GetEffectState();
 }

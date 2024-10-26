@@ -1,5 +1,6 @@
 public class StunnedState : IPlayerState
 {
+    public EObstacle Priority => EObstacle.Shoes;
     public void EnterState(Player player)
     {
         player.SetSpeed(0);
