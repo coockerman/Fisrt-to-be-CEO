@@ -14,6 +14,11 @@ public class ShoesObstacle : AObstacle
         transform.position += moveDirection;
     }
 
+    public override void Die()
+    {
+        SpawnEntity.Instance.ReturnObjectToPool(this);
+    }
+
     public override IPlayerState GetEffectState()
     {
         return new StunnedState();

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d325fff84c6f994283d738a75bf85f5, type: 3}
   m_Name: FishExp
   m_EditorClassIdentifier: 
-  Name: 
+  Name: ExpFish
   MoveSpeed: 5
   TypeFish: 2
   ExpCanGet: 15

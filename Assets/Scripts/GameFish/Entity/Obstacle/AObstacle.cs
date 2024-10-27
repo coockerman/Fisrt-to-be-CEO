@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public abstract class AObstacle : MonoBehaviour, IObstacle
     private string nameObstacle;
     private float timeEffect;
     private float moveSpeed;
+    private float endPointY = 0;
 
     public EObstacle TypeObstacle => typeObstacle;
     public string Name => nameObstacle;
@@ -24,12 +26,32 @@ public abstract class AObstacle : MonoBehaviour, IObstacle
         Setup();
     }
 
+    private void OnEnable()
+    {
+        endPointY = - gameObject.transform.position.y;
+    }
+
     protected virtual void Update()
     {
         Movement();
+        CheckEndPoint();
     }
     protected abstract void Setup();
     public abstract void Movement();
     
     public abstract IPlayerState GetEffectState();
+    public abstract void Die();
+    
+    // ReSharper disable Unity.PerformanceAnalysis
+    void CheckEndPoint()
+    {
+        if (endPointY > 0)
+        {
+            if (transform.position.y > endPointY) Die();
+        }
+        else if(endPointY < 0)
+        {
+            if (transform.position.y < endPointY) Die();
+        }
+    }
 }

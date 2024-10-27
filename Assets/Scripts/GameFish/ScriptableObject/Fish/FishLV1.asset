@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d325fff84c6f994283d738a75bf85f5, type: 3}
   m_Name: FishLV1
   m_EditorClassIdentifier: 
-  Name: 
+  Name: FishLV1
   MoveSpeed: 4
   TypeFish: 1
   ExpCanGet: 5

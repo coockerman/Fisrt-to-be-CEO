@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public float DefaultSpeed = 5f;
     public float DefaultHp = 5f;
     public DataLVPlayer DataLevelPlayer;
-    
+
     private float speed = 5f;
     private float hp = 5f;
     private float exp = 0f;
@@ -23,12 +23,12 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         SetState(new MovingState());
-        
+
         hp = DefaultHp;
         exp = 0f;
         if (DataLevelPlayer != null)
         {
-            levelData = new LevelData(DataLevelPlayer.levels[1].level, DataLevelPlayer.levels[1].expRequired );
+            levelData = new LevelData(DataLevelPlayer.levels[1].level, DataLevelPlayer.levels[1].expRequired);
         }
         else
         {
@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
     {
         this.speed = speed;
     }
+
     public void Move()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
@@ -73,13 +74,16 @@ public class Player : MonoBehaviour
             transform.localScale = new Vector3(-1, 1, 1);
         }
     }
+
     void AddHp(float hpGet)
     {
         hp += hpGet;
         if (hp >= DefaultHp) hp = DefaultHp;
+        
+        EventPlayer.UIUpdateHp(hp, DefaultHp);
     }
 
-    void ReduceHp(float hpReduce)
+    public void ReduceHp(float hpReduce)
     {
         hp -= hpReduce;
         if (hp <= 0)
@@ -87,6 +91,7 @@ public class Player : MonoBehaviour
             hp = 0;
             GameOver();
         }
+
         EventPlayer.UIUpdateHp(hp, DefaultHp);
     }
 
@@ -95,25 +100,32 @@ public class Player : MonoBehaviour
         exp += expGet;
         if (exp >= levelData.expRequired)
         {
-            LvUp();
+            if (levelData.level < DataLevelPlayer.levels.Length - 1)
+                LvUp();
+            else
+                exp = levelData.expRequired;
         }
-        EventPlayer.UIUpdateExp(levelData.level, exp, levelData.expRequired );
+
+        EventPlayer.UIUpdateExp(levelData.level, exp, levelData.expRequired);
     }
+
     void LvUp()
     {
         exp -= levelData.expRequired;
         levelData = DataLevelPlayer.levels[levelData.level + 1];
     }
-    
+
     void EatFish(IFish fish)
     {
-        // Todo EatFish
+        AddExp(fish.ExpCanGet);
+        fish.Die();
     }
 
     void GameOver()
     {
-        EventPlayer.UIGameOver();      
+        EventPlayer.UIGameOver();
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag(EEntity.Obstacle.ToString()))
@@ -122,6 +134,7 @@ public class Player : MonoBehaviour
             if (obstacle != null)
             {
                 AddEffect(obstacle.GetEffectState(), obstacle.TimeEffect);
+                obstacle.Die();
             }
         }
         else if (other.CompareTag(EEntity.Fish.ToString()))
@@ -134,7 +147,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    
+
     public void AddEffect(IPlayerState newEffect, float duration)
     {
         if (_currentState == null || newEffect.Priority >= _currentState.Priority)

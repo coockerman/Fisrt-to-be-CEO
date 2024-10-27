@@ -1162,7 +1162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DefaultSpeed: 5
   DefaultHp: 5
-  DataLevelPlayer: {fileID: 0}
+  DataLevelPlayer: {fileID: 11400000, guid: 2df0cc79e7fa268498b3067829fd63d4, type: 2}
 --- !u!4 &2141126926
 Transform:
   m_ObjectHideFlags: 0

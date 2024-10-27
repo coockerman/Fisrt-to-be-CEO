@@ -13,6 +13,12 @@ public class WasteObstacle : AObstacle
         Vector3 moveDirection = new Vector3(0, -MoveSpeed * Time.deltaTime, 0);
         transform.position += moveDirection;
     }
+
+    public override void Die()
+    {
+        SpawnEntity.Instance.ReturnObjectToPool(this);
+    }
+
     public override IPlayerState GetEffectState()
     {
         return new SlowState();

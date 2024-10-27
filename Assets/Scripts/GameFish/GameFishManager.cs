@@ -43,13 +43,13 @@ public class GameFishManager : MonoBehaviour
     }
     void RanSpawnEntity(List<DataFish> dataEntity)
     {
-        int ranListFish = Random.Range(0, dataEntity.Count);
-        SpawnEntity.Instance.SpawnElementEntity(dataEntity[ranListFish]);
+        int ranListEntity = Random.Range(0, dataEntity.Count);
+        SpawnEntity.Instance.GetEntityFromPool(dataEntity[ranListEntity]);
     }
     // ReSharper disable Unity.PerformanceAnalysis
     void RanSpawnEntity(List<DataObstacle> dataEntity)
     {
-        int ranListFish = Random.Range(0, dataEntity.Count);
-        SpawnEntity.Instance.SpawnElementEntity(dataEntity[ranListFish]);
+        int ranListEntity = Random.Range(0, dataEntity.Count);
+        SpawnEntity.Instance.GetEntityFromPool(dataEntity[ranListEntity]);
     }
 }

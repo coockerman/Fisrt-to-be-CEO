@@ -4,6 +4,7 @@ public interface IEntity
     public string Name { get; }
     public float MoveSpeed { get; }
     public void Movement();
+    public void Die();
 }
 
 public interface IObstacle : IEntity
@@ -21,5 +22,7 @@ public interface IFish : IEntity
     public int ExpCanGet { get; }
     public int LvFish { get; }
     public void Init(DataFish dataEntity);
+    
+    public void Attack(Player player);
 
 }

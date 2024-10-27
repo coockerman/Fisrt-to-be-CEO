@@ -15,5 +15,13 @@ public class NormalFish : AFish
         transform.position += moveDirection;
     }
 
-    
+    public override void Die()
+    {
+        SpawnEntity.Instance.ReturnObjectToPool(this);
+    }
+
+    public override void Attack(Player player)
+    {
+        player.ReduceHp(1f);
+    }
 }

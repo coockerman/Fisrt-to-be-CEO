@@ -8,4 +8,9 @@
     {
 
     }
+
+    public override void Die()
+    {
+        throw new System.NotImplementedException();
+    }
 }
