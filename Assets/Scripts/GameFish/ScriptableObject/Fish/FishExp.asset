@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FishExp
   m_EditorClassIdentifier: 
   Name: ExpFish
-  MoveSpeed: 5
+  MoveSpeed: 3.5
   TypeFish: 2
   ExpCanGet: 15
   LvFish: 0

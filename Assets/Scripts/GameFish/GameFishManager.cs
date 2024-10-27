@@ -32,6 +32,7 @@ public class GameFishManager : MonoBehaviour
 
     private int partSpawn = 0;
     private float timeInGame = 0;
+    private float timeCounter = 0f;
     
     private void Start()
     {
@@ -44,17 +45,28 @@ public class GameFishManager : MonoBehaviour
         StartCoroutine(ToSpawnEntity(dataListFish, 3f));
         StartCoroutine(ToSpawnEntity(dataListObstacle, 3f));
     }
+    
+
     private void Update()
     {
-        timeInGame += Time.deltaTime;
-        if (listTimeSpawn.Count - 1 > partSpawn)
+        timeCounter += Time.deltaTime;
+
+        if (timeCounter >= 1f)
         {
-            if (timeInGame >= listTimeSpawn[partSpawn].timeOpenFish)
+            timeInGame += 1f;
+            timeCounter = 0f;
+            
+            EventManager.UIUpdateTimeClock(timeInGame);
+            if (listTimeSpawn.Count - 1 > partSpawn)
             {
-                partSpawn++;
+                if (timeInGame >= listTimeSpawn[partSpawn].timeOpenFish)
+                {
+                    partSpawn++;
+                }
             }
         }
     }
+
     // ReSharper disable Unity.PerformanceAnalysis
     IEnumerator ToSpawnEntity(List<DataFish> dataEntity, float timeDelay)
     {

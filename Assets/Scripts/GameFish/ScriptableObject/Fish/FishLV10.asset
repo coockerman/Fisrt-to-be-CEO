@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d325fff84c6f994283d738a75bf85f5, type: 3}
   m_Name: FishLV10
   m_EditorClassIdentifier: 
-  Name: FishLV9
-  MoveSpeed: 4.5
+  Name: FishLV10
+  MoveSpeed: 6
   TypeFish: 1
-  ExpCanGet: 22
-  LvFish: 9
-  SkeletonData: {fileID: 11400000, guid: 7ba026a689da9414baef1c5904bc2aea, type: 2}
-  Sprite: {fileID: 21300000, guid: 59d381dc4314f9d45a92f9f3ebde804b, type: 3}
+  ExpCanGet: 30
+  LvFish: 10
+  SkeletonData: {fileID: 11400000, guid: ebb1b00d1f2cd084784c3750aaf03864, type: 2}
+  Sprite: {fileID: 21300000, guid: 9f334632298d9e84bacf1045836df964, type: 3}
