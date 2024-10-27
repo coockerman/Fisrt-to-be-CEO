@@ -8,5 +8,6 @@ public class DataFish : DataEntity
     public int ExpCanGet;
     public int LvFish = 0;
     public SkeletonDataAsset SkeletonData;
+    public Sprite Sprite;
 }
 

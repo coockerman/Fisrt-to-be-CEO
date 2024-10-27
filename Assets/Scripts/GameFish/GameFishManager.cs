@@ -1,18 +1,38 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
+[System.Serializable]
+public class TimeSpawn
+{
+    public float timeOpenFish;
+    public int lvFish;
+
+    public TimeSpawn() {}
+    public TimeSpawn(float timeOpenFish, int lvFish)
+    {
+        this.timeOpenFish = timeOpenFish;
+        this.lvFish = lvFish;
+    }
+}
 public class GameFishManager : MonoBehaviour
 {
     [SerializeField] List<DataFish> dataListFish;
     [SerializeField] List<DataObstacle> dataListObstacle;
-
+    
+    [SerializeField] List<TimeSpawn> listTimeSpawn;
+    
     [SerializeField] GameObject normalFishPrefab;
     [SerializeField] GameObject expFishPrefab;
 
     [SerializeField] GameObject shoesObstaclePrefab;
     [SerializeField] GameObject wasteObstaclePrefab;
 
+    private int partSpawn = 0;
+    private float timeInGame = 0;
+    
     private void Start()
     {
         FishFactory.Instance.RegisterFish(EFish.NormalFish, normalFishPrefab);
@@ -20,9 +40,20 @@ public class GameFishManager : MonoBehaviour
 
         ObstacleFactory.Instance.RegisterObstacle(EObstacle.Waste, wasteObstaclePrefab);
         ObstacleFactory.Instance.RegisterObstacle(EObstacle.Shoes, shoesObstaclePrefab);
-
+        
         StartCoroutine(ToSpawnEntity(dataListFish, 3f));
-        StartCoroutine(ToSpawnEntity(dataListObstacle, 2f));
+        StartCoroutine(ToSpawnEntity(dataListObstacle, 3f));
+    }
+    private void Update()
+    {
+        timeInGame += Time.deltaTime;
+        if (listTimeSpawn.Count - 1 > partSpawn)
+        {
+            if (timeInGame >= listTimeSpawn[partSpawn].timeOpenFish)
+            {
+                partSpawn++;
+            }
+        }
     }
     // ReSharper disable Unity.PerformanceAnalysis
     IEnumerator ToSpawnEntity(List<DataFish> dataEntity, float timeDelay)
@@ -41,9 +72,12 @@ public class GameFishManager : MonoBehaviour
             yield return new WaitForSeconds(timeDelay);
         }
     }
+
+    
+
     void RanSpawnEntity(List<DataFish> dataEntity)
     {
-        int ranListEntity = Random.Range(0, dataEntity.Count);
+        int ranListEntity = Random.Range(0, listTimeSpawn[partSpawn].lvFish);
         SpawnEntity.Instance.GetEntityFromPool(dataEntity[ranListEntity]);
     }
     // ReSharper disable Unity.PerformanceAnalysis

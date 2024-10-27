@@ -10,12 +10,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Mouth
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Body
+  - Item
+  - Fish
   - 
   - 
   - 

@@ -2,10 +2,6 @@
 
 public class NormalFish : AFish
 {
-    protected override void Setup()
-    {
-        
-    }
     public override void Movement()
     {
         float head = 1;

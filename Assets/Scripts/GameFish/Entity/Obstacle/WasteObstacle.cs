@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class WasteObstacle : AObstacle
 {
-    protected override void Setup()
-    {
-        gameObject.AddComponent<BoxCollider2D>();
-    }
     public override void Movement()
     {
         Vector3 moveDirection = new Vector3(0, -MoveSpeed * Time.deltaTime, 0);

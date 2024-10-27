@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d325fff84c6f994283d738a75bf85f5, type: 3}
+  m_Name: FishLV8
+  m_EditorClassIdentifier: 
+  Name: FishLV8
+  MoveSpeed: 3.6
+  TypeFish: 1
+  ExpCanGet: 18
+  LvFish: 8
+  SkeletonData: {fileID: 11400000, guid: 3a4966441e3e5084787d067b4902d858, type: 2}
+  Sprite: {fileID: 21300000, guid: c0ec8e9df601af74a9fce08c3b906706, type: 3}

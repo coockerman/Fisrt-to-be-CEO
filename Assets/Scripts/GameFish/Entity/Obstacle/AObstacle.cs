@@ -23,11 +23,11 @@ public abstract class AObstacle : MonoBehaviour, IObstacle
         timeEffect = dataEntity.TimeEffect;
         moveSpeed = dataEntity.MoveSpeed;
         gameObject.tag = EEntity.Obstacle.ToString();
-        Setup();
     }
 
     private void OnEnable()
     {
+        Setup();
         endPointY = - gameObject.transform.position.y;
     }
 
@@ -36,7 +36,11 @@ public abstract class AObstacle : MonoBehaviour, IObstacle
         Movement();
         CheckEndPoint();
     }
-    protected abstract void Setup();
+
+    protected virtual void Setup()
+    {
+        gameObject.AddComponent<BoxCollider2D>();
+    }
     public abstract void Movement();
     
     public abstract IPlayerState GetEffectState();

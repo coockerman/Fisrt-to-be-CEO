@@ -10,6 +10,7 @@ public abstract class AFish : MonoBehaviour, IFish
     private int lvFish;
     private float moveSpeed;
     private float endPointX;
+    private Sprite sprite;
     private SkeletonDataAsset skeletonData;
 
     public EFish TypeFish => typeFish;
@@ -26,22 +27,45 @@ public abstract class AFish : MonoBehaviour, IFish
         lvFish = dataFish.LvFish;
         moveSpeed = dataFish.MoveSpeed;
         skeletonData = dataFish.SkeletonData;
+        sprite = dataFish.Sprite;
         gameObject.GetComponent<SkeletonAnimation>().skeletonDataAsset = dataFish.SkeletonData;
         gameObject.GetComponent<SkeletonAnimation>().Initialize(true);
         gameObject.tag = EEntity.Fish.ToString();
-        Setup();
     }
     private void OnEnable()
     {
+        Setup();
         endPointX = -gameObject.transform.position.x;
     }
+
     protected virtual void Update()
     {
         Movement();
         CheckEndPoint();
     }
 
-    protected abstract void Setup();
+    protected virtual void Setup()
+    {
+        Transform childTransform = gameObject.transform.GetChild(0);
+    
+        SpriteRenderer spriteRenderer = childTransform.GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.sprite = sprite;
+        }
+    
+        PolygonCollider2D polygonCollider = childTransform.GetComponent<PolygonCollider2D>();
+        
+        if (polygonCollider == null)
+        {
+            childTransform.gameObject.AddComponent<PolygonCollider2D>();
+        }
+        else
+        {
+            Destroy(polygonCollider);
+            childTransform.gameObject.AddComponent<PolygonCollider2D>();
+        }
+    }
     public abstract void Movement();
 
     public abstract void Die();

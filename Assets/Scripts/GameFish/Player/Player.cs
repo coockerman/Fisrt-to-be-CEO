@@ -13,11 +13,12 @@ public class Player : MonoBehaviour
     private float exp = 0f;
     private LevelData levelData;
 
-    private IPlayerState _currentState;
+    private IPlayerState currentState;
     private Dictionary<IPlayerState, float> activeEffects = new Dictionary<IPlayerState, float>();
 
     private Rigidbody2D rb;
     private Vector2 movement;
+    
 
     private void Start()
     {
@@ -28,7 +29,7 @@ public class Player : MonoBehaviour
         exp = 0f;
         if (DataLevelPlayer != null)
         {
-            levelData = new LevelData(DataLevelPlayer.levels[1].level, DataLevelPlayer.levels[1].expRequired);
+            levelData = new LevelData(DataLevelPlayer.levels[1]);
         }
         else
         {
@@ -38,7 +39,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        _currentState?.UpdateState(this);
+        currentState?.UpdateState(this);
         UpdateActiveEffects();
     }
 
@@ -49,9 +50,9 @@ public class Player : MonoBehaviour
 
     public void SetState(IPlayerState newState)
     {
-        _currentState?.ExitState(this);
-        _currentState = newState;
-        _currentState.EnterState(this);
+        currentState?.ExitState(this);
+        currentState = newState;
+        currentState.EnterState(this);
     }
 
     public void SetSpeed(float speed)
@@ -113,12 +114,22 @@ public class Player : MonoBehaviour
     {
         exp -= levelData.expRequired;
         levelData = DataLevelPlayer.levels[levelData.level + 1];
+        Destroy(transform.GetChild(0).gameObject);
+        Instantiate(levelData.bodyPlayer, transform);
     }
 
     void EatFish(IFish fish)
     {
-        AddExp(fish.ExpCanGet);
-        fish.Die();
+        if (fish.LvFish <= levelData.level)
+        {
+            AddExp(fish.ExpCanGet);
+            fish.Die();
+        }
+        else
+        {
+            fish.Attack(this);
+        }
+        
     }
 
     void GameOver()
@@ -139,8 +150,8 @@ public class Player : MonoBehaviour
         }
         else if (other.CompareTag(EEntity.Fish.ToString()))
         {
-            IFish fish = other.GetComponent<IFish>();
-            if (fish != null && !(_currentState is StunnedState))
+            IFish fish = other.transform.parent.GetComponent<IFish>();
+            if (fish != null && !(currentState is StunnedState))
             {
                 EatFish(fish);
             }
@@ -150,7 +161,7 @@ public class Player : MonoBehaviour
 
     public void AddEffect(IPlayerState newEffect, float duration)
     {
-        if (_currentState == null || newEffect.Priority >= _currentState.Priority)
+        if (currentState == null || newEffect.Priority >= currentState.Priority)
         {
             SetState(newEffect);
         }

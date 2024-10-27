@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8258956060108546032}
   - component: {fileID: 7081810515706877390}
   - component: {fileID: 320091952229537102}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Waste
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

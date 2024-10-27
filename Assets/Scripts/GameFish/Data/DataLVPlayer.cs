@@ -5,11 +5,13 @@ public class LevelData
 {
     public int level;
     public float expRequired;
+    public GameObject bodyPlayer;
 
-    public LevelData(int level, float expRequired)
+    public LevelData(LevelData levelData)
     {
-        this.level = level;
-        this.expRequired = expRequired;
+        this.level = levelData.level;
+        this.expRequired = levelData.expRequired;
+        this.bodyPlayer = levelData.bodyPlayer;
     }
 }
 [CreateAssetMenu(fileName = "DataLVPlayer", menuName = "Player/DataLVPlayer")]
