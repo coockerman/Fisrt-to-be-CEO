@@ -15,4 +15,4 @@ MonoBehaviour:
   Name: waste
   MoveSpeed: 3
   TypeObstacle: 1
-  TimeEffect: 10
+  TimeEffect: 5

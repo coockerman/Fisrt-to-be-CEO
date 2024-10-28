@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: FishLV6
   MoveSpeed: 3.2
   TypeFish: 1
-  ExpCanGet: 12
+  ExpCanGet: 10
   LvFish: 6
   SkeletonData: {fileID: 11400000, guid: 88dfb60b365d34f4880ad6435b68ee5c, type: 2}
   Sprite: {fileID: 21300000, guid: e372a0a9a50be2941a36470df3d8d1f8, type: 3}

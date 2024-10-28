@@ -30,6 +30,18 @@ public abstract class AFish : MonoBehaviour, IFish
         sprite = dataFish.Sprite;
         gameObject.GetComponent<SkeletonAnimation>().skeletonDataAsset = dataFish.SkeletonData;
         gameObject.GetComponent<SkeletonAnimation>().Initialize(true);
+        var skeletonAnimation = gameObject.GetComponent<SkeletonAnimation>();
+
+        string[] animationNames = { "animation", "boi" };
+
+        foreach (var animationName in animationNames)
+        {
+            if (skeletonAnimation.Skeleton.Data.FindAnimation(animationName) != null)
+            {
+                skeletonAnimation.AnimationName = animationName;
+                break;
+            }
+        }
         gameObject.tag = EEntity.Fish.ToString();
     }
     private void OnEnable()

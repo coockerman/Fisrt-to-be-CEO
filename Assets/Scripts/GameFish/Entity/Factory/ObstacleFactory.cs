@@ -6,7 +6,7 @@ public class ObstacleFactory : ASingleton<ObstacleFactory>
     private Dictionary<EObstacle, GameObject> _obstaclePrefabDictionary;
     protected override void Awake()
     {
-        base.Awake();
+        //base.Awake();
 
         _obstaclePrefabDictionary = new Dictionary<EObstacle, GameObject>();
     }

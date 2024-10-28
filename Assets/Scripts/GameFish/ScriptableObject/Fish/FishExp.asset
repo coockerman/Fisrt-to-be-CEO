@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: FishExp
   m_EditorClassIdentifier: 
   Name: ExpFish
-  MoveSpeed: 3.5
+  MoveSpeed: 5
   TypeFish: 2
-  ExpCanGet: 15
+  ExpCanGet: 10
   LvFish: 0
   SkeletonData: {fileID: 11400000, guid: 5792f2256f5a6854ebbc51059b27bfd8, type: 2}
   Sprite: {fileID: 21300000, guid: c0a225b8c95a2a04e95f96feab547972, type: 3}

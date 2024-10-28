@@ -1,5 +1,3 @@
-using GameCooking;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +8,7 @@ public class FishFactory : ASingleton<FishFactory>
     private Dictionary<EFish, GameObject> _fishPrefabDictionary;
     protected override void Awake()
     {
-        base.Awake();
+        //base.Awake();
 
         _fishPrefabDictionary = new Dictionary<EFish, GameObject>();
     }

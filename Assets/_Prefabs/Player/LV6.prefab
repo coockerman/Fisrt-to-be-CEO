@@ -291,6 +291,6 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: boi
+  _animationName: animation
   loop: 1
   timeScale: 1
