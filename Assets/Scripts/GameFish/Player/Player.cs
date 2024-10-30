@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public AudioClip DamageSFX;
     public AudioClip EatingSFX;
     public AudioClip GameOverSFX;
+    public AudioClip WinnerSFX;
 
     private float speed = 5f;
     private float hp = 5f;
@@ -132,6 +133,10 @@ public class Player : MonoBehaviour
         AddHp(1);
         exp -= levelData.expRequired;
         levelData = DataLevelPlayer.levels[levelData.level + 1];
+        if (levelData.level == 4)
+        {
+            EventManager.SpawnBoss();
+        }
         Destroy(transform.GetChild(1).gameObject);
         Instantiate(levelData.bodyPlayer, transform);
     }
@@ -139,6 +144,11 @@ public class Player : MonoBehaviour
 
     void EatFish(IFish fish)
     {
+        if (fish.TypeFish == EFish.BossFish)
+        {
+            GameWinner();
+            return;
+        }
         if (fish.LvFish <= levelData.level)
         {
             SoundManager.Instance.PlayAudioSource(EatingSFX);
@@ -154,11 +164,17 @@ public class Player : MonoBehaviour
 
     void GameOver()
     {
-        SoundManager.Instance.PlayGameOverSound(EatingSFX);
+        SoundManager.Instance.PlayGameOverSound(GameOverSFX);
         EventPlayer.UIGameOver();
         gameObject.SetActive(false);
     }
 
+    void GameWinner()
+    {
+        SoundManager.Instance.PlayGameOverSound(GameOverSFX);
+        EventPlayer.UIWinner();
+        gameObject.SetActive(false);
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag(EEntity.Obstacle.ToString()))

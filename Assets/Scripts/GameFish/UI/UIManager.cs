@@ -14,11 +14,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject UiSettingMenu;
     [SerializeField] private TextMeshProUGUI TxtSettingAudioSource;
     [SerializeField] private TextMeshProUGUI TxtSettingAudioMusic;
-
+    
+    [SerializeField] private GameObject UiGameOver;
+    [SerializeField] private GameObject UiWinner;
     private void OnEnable()
     {
         EventPlayer.OnUIUpdateExp += UpdateUIExp;
         EventPlayer.OnUIUpdateHp += UpdateUIHpPlayer;
+        EventPlayer.OnUIGameOver += OnUIGameOver;
+        EventPlayer.OnUIWinner += OnUIWinner;
         EventManager.OnUIUpdateTimeClock += UpdateUITimeClock;
     }
 
@@ -26,7 +30,9 @@ public class UIManager : MonoBehaviour
     {
         EventPlayer.OnUIUpdateExp -= UpdateUIExp;
         EventPlayer.OnUIUpdateHp -= UpdateUIHpPlayer;
-        EventManager.OnUIUpdateTimeClock -= UpdateUITimeClock;
+        EventPlayer.OnUIGameOver -= OnUIGameOver;
+        EventPlayer.OnUIWinner += OnUIWinner;
+        
     }
 
     void UpdateUIExp(float lv, float exp, float defaultExp)
@@ -34,7 +40,7 @@ public class UIManager : MonoBehaviour
         UIExp.maxValue = defaultExp;
         UIExp.value = exp;
     }
-
+    
     void UpdateUIHpPlayer(float hp, float defaultHp)
     {
         foreach (GameObject player in UIHpPlayer)
@@ -58,6 +64,17 @@ public class UIManager : MonoBehaviour
         UITimeClock.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
+    void OnUIGameOver()
+    {
+        EventManager.OnUIUpdateTimeClock -= UpdateUITimeClock;
+        UiGameOver.SetActive(true);
+    }
+
+    void OnUIWinner()
+    {
+        EventManager.OnUIUpdateTimeClock -= UpdateUITimeClock;
+        UiWinner.SetActive(true);
+    }
     public void OnSettingMenu()
     {
         SceneGame.Instance.PauseScene();
@@ -69,6 +86,10 @@ public class UIManager : MonoBehaviour
         UiSettingMenu.SetActive(false);
     }
 
+    public void RestartGame()
+    {
+        SceneGame.Instance.LoadScene(1);
+    }
     public void ExitGamePlay()
     {
         SceneGame.Instance.LoadScene(0);

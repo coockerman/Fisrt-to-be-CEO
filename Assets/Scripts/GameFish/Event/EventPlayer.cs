@@ -5,7 +5,7 @@ public class EventPlayer
     public static event Action<float, float, float> OnUIUpdateExp;
     public static event Action<float, float> OnUIUpdateHp;
     public static event Action OnUIGameOver;
-
+    public static event Action OnUIWinner;
     public static void UIUpdateExp(float lv, float exp, float defaultExp)
     {
         OnUIUpdateExp?.Invoke(lv, exp, defaultExp);
@@ -17,5 +17,9 @@ public class EventPlayer
     public static void UIGameOver()
     {
         OnUIGameOver?.Invoke();
+    }
+    public static void UIWinner()
+    {
+        OnUIWinner?.Invoke();
     }
 }

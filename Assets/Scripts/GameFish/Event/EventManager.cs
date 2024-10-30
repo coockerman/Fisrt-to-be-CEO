@@ -3,14 +3,15 @@ using System;
 public class EventManager
 {
     public static event Action<float> OnUIUpdateTimeClock;
-    public static event Action OnUISetting;
+    public static event Action OnSpawnBoss;
     
     public static void UIUpdateTimeClock(float timeClock)
     {
         OnUIUpdateTimeClock?.Invoke(timeClock);
     }
-    public static void UISetting()
+
+    public static void SpawnBoss()
     {
-        OnUISetting?.Invoke();
+        OnSpawnBoss?.Invoke();
     }
 }

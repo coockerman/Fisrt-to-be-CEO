@@ -17,13 +17,13 @@ MonoBehaviour:
     expRequired: 0
     bodyPlayer: {fileID: 797410694017052379, guid: bd8a19f21c1a6364cafe3bab9450cb99, type: 3}
   - level: 1
-    expRequired: 7
+    expRequired: 10
     bodyPlayer: {fileID: 797410694017052379, guid: bd8a19f21c1a6364cafe3bab9450cb99, type: 3}
   - level: 2
-    expRequired: 15
+    expRequired: 20
     bodyPlayer: {fileID: 797410694017052379, guid: 39e076ee5a9149745ba194b26e1c26b5, type: 3}
   - level: 3
-    expRequired: 30
+    expRequired: 35
     bodyPlayer: {fileID: 797410694017052379, guid: aac695607ab81eb49bc1d7e6aa6c5718, type: 3}
   - level: 4
     expRequired: 60

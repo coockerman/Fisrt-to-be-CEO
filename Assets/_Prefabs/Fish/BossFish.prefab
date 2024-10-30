@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c0a225b8c95a2a04e95f96feab547972, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9f334632298d9e84bacf1045836df964, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,12 +93,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6376369075914303197}
-  - component: {fileID: 3818754821143576325}
+  - component: {fileID: 2170444432358414207}
   - component: {fileID: 5360310540727493805}
   - component: {fileID: 5933865499314772259}
   - component: {fileID: 6349782145376145365}
   m_Layer: 8
-  m_Name: NormalFish
+  m_Name: BossFish
   m_TagString: Fish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,7 +120,7 @@ Transform:
   - {fileID: 1584420579511124573}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3818754821143576325
+--- !u!114 &2170444432358414207
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,9 +129,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2141801225736917859}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 330dcb9cf099fbf4ea7dff9514c125af, type: 3}
+  m_Script: {fileID: 11500000, guid: 58f291d259e87404ea421bed1b3242ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listFishData:
+  - {fileID: 11400000, guid: b7410d1db24fbdc42927e784ea1c6ecd, type: 2}
+  - {fileID: 11400000, guid: 70cef8fa1886cee4a994002b845c1a39, type: 2}
+  - {fileID: 11400000, guid: 8739a87d5d256864997eca72f3b3d72f, type: 2}
 --- !u!33 &5360310540727493805
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -160,7 +164,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d5455841d03c52141ae8a3e198f14b28, type: 2}
+  - {fileID: 2100000, guid: 48a38503834afe04c91407aedae62bda, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -194,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 4ad33104cf5f5fb47a62ab9ca6cf88c0, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: ebb1b00d1f2cd084784c3750aaf03864, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -216,6 +220,6 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: boi
+  _animationName: animation
   loop: 1
   timeScale: 1

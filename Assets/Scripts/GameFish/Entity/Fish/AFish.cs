@@ -9,7 +9,7 @@ public abstract class AFish : MonoBehaviour, IFish
     private int expCanGet;
     private int lvFish;
     private float moveSpeed;
-    private float endPointX;
+    protected float endPointX;
     private Sprite sprite;
     private SkeletonDataAsset skeletonData;
 
@@ -47,9 +47,13 @@ public abstract class AFish : MonoBehaviour, IFish
     private void OnEnable()
     {
         Setup();
-        endPointX = -gameObject.transform.position.x;
+        SetEndPoint();
     }
 
+    protected virtual void SetEndPoint()
+    {
+        endPointX = -gameObject.transform.position.x;
+    }
     protected virtual void Update()
     {
         Movement();
@@ -88,7 +92,7 @@ public abstract class AFish : MonoBehaviour, IFish
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
-    void CheckEndPoint()
+    protected virtual void CheckEndPoint()
     {
         if (endPointX > 0)
         {
