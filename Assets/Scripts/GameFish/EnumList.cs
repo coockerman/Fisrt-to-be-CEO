@@ -8,7 +8,7 @@ public enum EObstacle
 }
 public enum EFish
 {
-    BossFish, NormalFish, ExpFish, MayflyFish
+    BossFish, NormalFish, ExpFish, ToxicFish
 }
 
 

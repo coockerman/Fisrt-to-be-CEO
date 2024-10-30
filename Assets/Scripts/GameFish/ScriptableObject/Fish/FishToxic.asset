@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d325fff84c6f994283d738a75bf85f5, type: 3}
-  m_Name: FishLV10
+  m_Name: FishToxic
   m_EditorClassIdentifier: 
-  Name: FishLV10
-  MoveSpeed: 3
-  TypeFish: 0
-  ExpCanGet: 100
-  LvFish: 10
-  SkeletonData: {fileID: 11400000, guid: ebb1b00d1f2cd084784c3750aaf03864, type: 2}
-  Sprite: {fileID: 21300000, guid: 9f334632298d9e84bacf1045836df964, type: 3}
+  Name: Fish Toxic
+  MoveSpeed: 6
+  TypeFish: 3
+  ExpCanGet: 0
+  LvFish: 15
+  SkeletonData: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 1942bb946c0c196468c69e8895afbe1e, type: 3}

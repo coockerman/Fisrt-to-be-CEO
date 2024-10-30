@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossFish : AFish
 {
     [SerializeField] List<DataFish> listFishData;
+    [SerializeField] private AudioClip groulSFX;
     private bool isOver = false;
     private bool isEndPoint = false;
     protected override void Update()
@@ -64,13 +65,17 @@ public class BossFish : AFish
         int spawnCount = 0;
         int maxSpawn = MaxSpawnCount;
         int rand = Random.Range(0, listFishData.Count);
+        SoundManager.Instance.PlayAudioSource(groulSFX);
+        
+        yield return new WaitForSeconds(0.5f);
         while (spawnCount < maxSpawn)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.6f);
             spawnCount++;
             SpawnEntity.Instance.GetEntityFromPool(listFishData[rand]);
         }
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
+        
         SetEndPointOver();
         isOver = true;
         isEndPoint = false;
@@ -93,7 +98,7 @@ public class BossFish : AFish
 
     void SpawnBoss()
     {
-        int ran = Random.Range(2, 6);
+        int ran = Random.Range(4, 7);
         StartCoroutine(SpawnFishAttack(ran));
     }
     // ReSharper disable Unity.PerformanceAnalysis
@@ -101,19 +106,14 @@ public class BossFish : AFish
     {
         if (endPointX > 0)
         {
-            if (transform.position.x > endPointX) Leave();
+            if (transform.position.x > endPointX) Die();
         }
         else if(endPointX < 0)
         {
-            if (transform.position.x < endPointX) Leave();
+            if (transform.position.x < endPointX) Die();
         }
     }
     public override void Die()
-    {
-        
-    }
-
-    void Leave()
     {
         isOver = false;
         isEndPoint = false;

@@ -105,7 +105,7 @@ public class SpawnEntity : ASingleton<SpawnEntity>
         float randomX = Random.Range(0, 2);
         var posX = randomX >= 0.5f ? rightPos.position.x : leftPos.position.x;
 
-        float randomY = Random.Range(-13, 13);
+        float randomY = Random.Range(-12, 12);
         var posY = randomY;
         return new Vector3(posX, posY, 0);
     }

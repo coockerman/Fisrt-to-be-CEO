@@ -17,32 +17,32 @@ MonoBehaviour:
     expRequired: 0
     bodyPlayer: {fileID: 797410694017052379, guid: bd8a19f21c1a6364cafe3bab9450cb99, type: 3}
   - level: 1
-    expRequired: 10
+    expRequired: 8
     bodyPlayer: {fileID: 797410694017052379, guid: bd8a19f21c1a6364cafe3bab9450cb99, type: 3}
   - level: 2
-    expRequired: 20
+    expRequired: 18
     bodyPlayer: {fileID: 797410694017052379, guid: 39e076ee5a9149745ba194b26e1c26b5, type: 3}
   - level: 3
     expRequired: 35
     bodyPlayer: {fileID: 797410694017052379, guid: aac695607ab81eb49bc1d7e6aa6c5718, type: 3}
   - level: 4
-    expRequired: 60
+    expRequired: 50
     bodyPlayer: {fileID: 797410694017052379, guid: 03b576005c795fd469900f3154a8757d, type: 3}
   - level: 5
-    expRequired: 100
+    expRequired: 80
     bodyPlayer: {fileID: 8607551932918344170, guid: 4d5bddb3be66e334393549e7dc89843b, type: 3}
   - level: 6
-    expRequired: 150
+    expRequired: 130
     bodyPlayer: {fileID: 6714417184022883072, guid: 89807f9b683278347864d4da20d54395, type: 3}
   - level: 7
-    expRequired: 210
+    expRequired: 220
     bodyPlayer: {fileID: 6714417184022883072, guid: a0e830949c8184f4bad50c1f432574d9, type: 3}
   - level: 8
-    expRequired: 280
+    expRequired: 320
     bodyPlayer: {fileID: 6714417184022883072, guid: b4fa0afe736082241a54ac266a661199, type: 3}
   - level: 9
-    expRequired: 380
+    expRequired: 500
     bodyPlayer: {fileID: 6714417184022883072, guid: 11db384643b8c244aba0909207d19861, type: 3}
   - level: 10
-    expRequired: 500
+    expRequired: 1000
     bodyPlayer: {fileID: 6714417184022883072, guid: aeea304378399354c9cbc445e91c76ae, type: 3}

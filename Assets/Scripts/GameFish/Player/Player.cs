@@ -14,7 +14,10 @@ public class Player : MonoBehaviour
     public AudioClip EatingSFX;
     public AudioClip GameOverSFX;
     public AudioClip WinnerSFX;
+    public AudioClip LvUpSFX;
 
+    public ParticleSystem ParticleLvUp;
+    
     private float speed = 5f;
     private float hp = 5f;
     private float exp = 0f;
@@ -26,6 +29,8 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movement;
 
+    private bool isCanReduce = true;
+    
 
     private void Start()
     {
@@ -62,6 +67,10 @@ public class Player : MonoBehaviour
         rb.MovePosition(newPosition);
     }
 
+    void SetCanReduce()
+    {
+        isCanReduce = true;
+    }
     public void SetState(IPlayerState newState)
     {
         currentState?.ExitState(this);
@@ -100,16 +109,17 @@ public class Player : MonoBehaviour
 
     public void ReduceHp(float hpReduce)
     {
-        if (hp > 0)
+        if (hp > 0 && isCanReduce)
         {
             hp -= hpReduce;
+            isCanReduce = false;
+            Invoke(nameof(SetCanReduce), 0.5f);
         }
-        else
+        if(hp <= 0)
         {
             hp = 0;
             GameOver();
         }
-
 
         EventPlayer.UIUpdateHp(hp, DefaultHp);
     }
@@ -133,24 +143,28 @@ public class Player : MonoBehaviour
         AddHp(1);
         exp -= levelData.expRequired;
         levelData = DataLevelPlayer.levels[levelData.level + 1];
-        if (levelData.level == 4)
-        {
-            EventManager.SpawnBoss();
-        }
-        Destroy(transform.GetChild(1).gameObject);
+        
+        if (levelData.level == 3) EventManager.SpawnExpFish();
+        if (levelData.level == 4) EventManager.SpawnBoss();
+        
+        ParticleLvUp.Play();
+        SoundManager.Instance.PlayAudioSource(LvUpSFX);
+        Destroy(transform.GetChild(2).gameObject);
         Instantiate(levelData.bodyPlayer, transform);
     }
 
 
     void EatFish(IFish fish)
     {
-        if (fish.TypeFish == EFish.BossFish)
-        {
-            GameWinner();
-            return;
-        }
         if (fish.LvFish <= levelData.level)
         {
+            if (fish.TypeFish == EFish.BossFish)
+            {
+                fish.Die();
+                GameWinner();
+                return;
+            }
+
             SoundManager.Instance.PlayAudioSource(EatingSFX);
             AddExp(fish.ExpCanGet);
             fish.Die();
@@ -171,10 +185,11 @@ public class Player : MonoBehaviour
 
     void GameWinner()
     {
-        SoundManager.Instance.PlayGameOverSound(GameOverSFX);
+        SoundManager.Instance.PlayGameOverSound(WinnerSFX);
         EventPlayer.UIWinner();
         gameObject.SetActive(false);
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag(EEntity.Obstacle.ToString()))
@@ -182,7 +197,6 @@ public class Player : MonoBehaviour
             IObstacle obstacle = other.GetComponent<IObstacle>();
             if (obstacle != null)
             {
-                
                 AddEffect(obstacle.GetEffectState(), obstacle.TimeEffect);
                 obstacle.Die();
             }
@@ -190,7 +204,7 @@ public class Player : MonoBehaviour
         else if (other.CompareTag(EEntity.Fish.ToString()))
         {
             IFish fish = other.transform.parent.GetComponent<IFish>();
-            if (fish != null && !(currentState is StunnedState))
+            if (fish != null)
             {
                 EatFish(fish);
             }
@@ -213,6 +227,7 @@ public class Player : MonoBehaviour
         {
             activeEffects.Add(newEffect, duration);
         }
+
         SoundManager.Instance.PlayAudioSource(ImpactSFX);
     }
 

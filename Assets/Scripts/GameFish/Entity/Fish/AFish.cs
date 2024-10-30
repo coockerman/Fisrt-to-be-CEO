@@ -28,6 +28,11 @@ public abstract class AFish : MonoBehaviour, IFish
         moveSpeed = dataFish.MoveSpeed;
         skeletonData = dataFish.SkeletonData;
         sprite = dataFish.Sprite;
+        InitAnimation(dataFish);
+        gameObject.tag = EEntity.Fish.ToString();
+    }
+    protected virtual void InitAnimation(DataFish dataFish)
+    {
         gameObject.GetComponent<SkeletonAnimation>().skeletonDataAsset = dataFish.SkeletonData;
         gameObject.GetComponent<SkeletonAnimation>().Initialize(true);
         var skeletonAnimation = gameObject.GetComponent<SkeletonAnimation>();
@@ -42,24 +47,21 @@ public abstract class AFish : MonoBehaviour, IFish
                 break;
             }
         }
-        gameObject.tag = EEntity.Fish.ToString();
     }
     private void OnEnable()
     {
         Setup();
         SetEndPoint();
     }
-
-    protected virtual void SetEndPoint()
-    {
-        endPointX = -gameObject.transform.position.x;
-    }
     protected virtual void Update()
     {
         Movement();
         CheckEndPoint();
     }
-
+    protected virtual void SetEndPoint()
+    {
+        endPointX = -gameObject.transform.position.x;
+    }
     protected virtual void Setup()
     {
         Transform childTransform = gameObject.transform.GetChild(0);
@@ -86,7 +88,6 @@ public abstract class AFish : MonoBehaviour, IFish
 
     public abstract void Die();
 
-
     public virtual void Attack(Player player)
     {
     }
@@ -94,13 +95,10 @@ public abstract class AFish : MonoBehaviour, IFish
     // ReSharper disable Unity.PerformanceAnalysis
     protected virtual void CheckEndPoint()
     {
-        if (endPointX > 0)
+        if ((endPointX > 0 && transform.position.x > endPointX) || 
+            (endPointX < 0 && transform.position.x < endPointX))
         {
-            if (transform.position.x > endPointX) Die();
-        }
-        else if(endPointX < 0)
-        {
-            if (transform.position.x < endPointX) Die();
+            Die();
         }
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FishLV8
   m_EditorClassIdentifier: 
   Name: FishLV8
-  MoveSpeed: 4.5
+  MoveSpeed: 5
   TypeFish: 1
   ExpCanGet: 18
   LvFish: 8
